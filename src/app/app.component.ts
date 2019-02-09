@@ -1,11 +1,16 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, ViewChild, ElementRef,AfterViewInit  } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from './_services';
 import { User, Role } from './_models';
 
 @Component({ selector: 'app', templateUrl: 'app.component.html' })
-export class AppComponent {
+export class AppComponent{
+
+
+    baseMenu: ElementRef
+    isCollapse = true;
+
     currentUser: User;
 
     constructor(
@@ -27,4 +32,13 @@ export class AppComponent {
         this.authenticationService.logout();
         this.router.navigate(['/login']);
     }
+
+    public openBaseMenu() {
+        console.log("openBaseMenu() is triggered. ", this.isCollapse);
+        this.isCollapse = !this.isCollapse;
+        console.log("After isCollapse: ", this.isCollapse)
+        //this.baseMenu.nativeElement.ViewChild
+    }
+
+    
 }

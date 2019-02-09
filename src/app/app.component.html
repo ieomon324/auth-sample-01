@@ -1,30 +1,72 @@
 ﻿<!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+<!-- <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAuth">Admin</a> -->
+<!-- <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/">Home</a>
         <a class="nav-item nav-link" routerLink="/admin" *ngIf="currentUser.functionIdList.indexOf('M-FUNC-003') > -1">Admin</a>
-        <!-- <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAuth">Admin</a> -->
+
         <a class="nav-item nav-link" (click)="logout()">Logout</a>
     </div>
-</nav>
+</nav> -->
 
 <!-- main app container -->
-<div class="jumbotron">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <router-outlet></router-outlet>
-            </div>
-        </div>
+<!-- <div class="jumbotron"> -->
+<div class="container-fluid">
+  <nav class="navbar navbar-light bg-primary">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#baseMenu"
+      (click)="openBaseMenu()"
+    >
+      <span class="navbar-toggler-icon" ></span>
+      <!--  <span style="font-size:30px;cursor:pointer" (click)="openBaseMenu()">&#9776;</span> -->
+    </button>
+
+    <a class="navbar-brand" href="#">PRHAS | AAS</a>
+    <a class="nav-item nav-link" (click)="logout()">Logout</a>
+  </nav>
+
+  <!-- menu collapse navbar-collapse -->
+  <div [ngClass]="{'collapse': isCollapse,
+                    'show': !isCollapse}" 
+                 id="baseMenu" #baseMenu>
+    <div class="p-4">
+      <ul class="sidenav" *ngIf="currentUser">
+        <li>
+          <a class="nav-item nav-link" routerLink="/">Home</a>
+        </li>
+        <li>
+          <a
+            class="nav-item nav-link"
+            routerLink="/admin"
+            *ngIf="currentUser.functionIdList.indexOf('M-FUNC-003') > -1"
+            >Admin</a
+          >
+        </li>
+        <li><a class="nav-item nav-link" (click)="logout()">Logout</a></li>
+      </ul>
     </div>
+  </div>
+  <div class="jumbotron">
+    <router-outlet></router-outlet>
+  </div>
+
+  <!--   <div class="row">
+    <div class="col-md-6 offset-md-3">
+      
+    </div>
+  </div> -->
 </div>
+<!-- </div> -->
 
 <!-- credits -->
-<div class="text-center">
+<!-- <div class="text-center">
     <p>
         <a href="http://jasonwatmore.com/post/2018/11/22/angular-7-role-based-authorization-tutorial-with-example" target="_top">Angular 7 - Role Based Authorization Tutorial with Example</a>
     </p>
     <p>
         <a href="http://jasonwatmore.com" target="_top">JasonWatmore.com</a>
     </p>
-</div>
+</div> -->

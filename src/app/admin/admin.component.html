@@ -3,6 +3,8 @@
 <div>
     All users from secure (admin only) api end point:
     <ul>
-        <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
+        <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}
+            <div *ngFor="let id of user.functionIdList">{{id}}</div>
+        </li>
     </ul>
 </div>
