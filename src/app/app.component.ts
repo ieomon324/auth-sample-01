@@ -40,5 +40,20 @@ export class AppComponent{
         //this.baseMenu.nativeElement.ViewChild
     }
 
+    setMenuStyle(){
+        let styles = {
+            'width': this.isCollapse ? '0' : '250px'
+          };
+          return styles;
+    }
+
+    setMain(){
+        let styles = {
+            'marginLeft': this.isCollapse ? '0' : '250px'
+          };
+          return styles;
+    }
+
+    
     
 }

@@ -11,8 +11,13 @@
 
 <!-- main app container -->
 <!-- <div class="jumbotron"> -->
-<div class="container-fluid">
+<div
+  class="container-fluid"
+  id="main"
+  [ngStyle]="setMain()"
+>
   <nav class="navbar navbar-light bg-primary">
+      
     <button
       class="navbar-toggler"
       type="button"
@@ -20,7 +25,7 @@
       data-target="#baseMenu"
       (click)="openBaseMenu()"
     >
-      <span class="navbar-toggler-icon" ></span>
+      <span class="navbar-toggler-icon"></span>
       <!--  <span style="font-size:30px;cursor:pointer" (click)="openBaseMenu()">&#9776;</span> -->
     </button>
 
@@ -28,37 +33,39 @@
     <a class="nav-item nav-link" (click)="logout()">Logout</a>
   </nav>
 
-  <!-- menu collapse navbar-collapse -->
-  <div [ngClass]="{'collapse': isCollapse,
-                    'show': !isCollapse}" 
-                 id="baseMenu" #baseMenu>
-    <div class="p-4">
-      <ul class="sidenav" *ngIf="currentUser">
-        <li>
-          <a class="nav-item nav-link" routerLink="/">Home</a>
-        </li>
-        <li>
-          <a
-            class="nav-item nav-link"
-            routerLink="/admin"
-            *ngIf="currentUser.functionIdList.indexOf('M-FUNC-003') > -1"
-            >Admin</a
-          >
-        </li>
-        <li><a class="nav-item nav-link" (click)="logout()">Logout</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="jumbotron">
-    <router-outlet></router-outlet>
-  </div>
-
   <!--   <div class="row">
     <div class="col-md-6 offset-md-3">
       
     </div>
   </div> -->
+  <div class="jumbotron">
+      <router-outlet></router-outlet>
+    </div>
 </div>
+<!-- menu collapse navbar-collapse -->
+<!-- [ngClass]="{'collapse': isCollapse, 'show': !isCollapse}" -->
+
+<ul
+  class="sidenav"
+  *ngIf="currentUser"
+  [ngStyle]="setMenuStyle()"
+  id="baseMenu"
+  #baseMenu
+>
+  <li>
+    <a class="nav-item nav-link" routerLink="/">Home</a>
+  </li>
+  <li>
+    <a
+      class="nav-item nav-link"
+      routerLink="/admin"
+      *ngIf="currentUser.functionIdList.indexOf('M-FUNC-003') > -1"
+      >Admin</a
+    >
+  </li>
+  <li><a class="nav-item nav-link" (click)="logout()">Logout</a></li>
+</ul>
+
 <!-- </div> -->
 
 <!-- credits -->
